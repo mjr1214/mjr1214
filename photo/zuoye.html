@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery.js"></script>
+	 
+</head>
+<style>
+*{
+	margin: 0;
+	padding:0;
+	list-style: none;
+}
+.imgs{
+	width:100%;
+	height:624px;
+	position: fixed;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	margin:auto;
+	background:#efe1ca url(image/bg.jpg#efe1ca) right no-repeat;
+	position: relative;
+}
+.boxs{
+	width:664px;
+	height:624px;
+	padding: 2px;
+	position: absolute;
+    top:0;
+    left:105px;
+}
+.boxs li{
+	width:198px;
+	height:198px;
+	float: left;
+	margin: 5px;
+}
+
+.boxs img{
+	width:198px;
+	height:198px;
+	float: left;
+	
+}
+
+.big{
+	width:100%;
+	height:644px;
+	background: rgba(0,0,0,0.7);
+	position: absolute;
+	top:0;
+	display: none;
+	top:0;	
+	right:0;
+	bottom:0;
+	left:0;
+	margin:auto;
+}
+
+.down{
+	width:50px;
+	height:50px;
+	border-radius: 50%;
+	position: absolute;
+	border:3px solid #800080;
+	font-size: 18px;
+	font-weight: normal;
+	text-align: center;
+	line-height: 50px;
+	color:aqua;
+	right:80px;
+	top:35px;
+	text-shadow:2px 2px 10px grey;
+}
+.down1{
+	width:45px;
+	height:45px;
+	border-radius: 50%;
+	background: #ccc;
+	opacity: 0.7;
+	margin: 0 auto;
+	margin-top: 2px;
+	line-height: 45px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: normal;
+	color:maroon;
+	right:80px;
+	top:35px;
+	text-shadow:2px 2px 10px grey;
+}
+.big img{
+	position: absolute;
+    top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	margin:auto;
+	display: block;
+	width:484px;
+	height:645px;
+	/*max-height: 100%;
+	max-width: 100%;*/
+}
+.btn{
+	width:800px;
+	position:absolute;
+    top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	margin:auto;
+    z-index: 10;
+	height:0;
+}
+.left{
+	width:80px;
+	height:80px;
+	color:#fff;
+	text-align: center;
+	line-height: 80px;
+	font-size: 56px;
+	font-family: "黑体";
+	float: left;
+	z-index: 10;
+}
+.right{
+	width:80px;
+	height:80px;
+	color:#fff;
+	text-align: center;
+	line-height: 80px;
+	font-size: 56px;
+	font-family: "黑体";
+	float: right;
+	z-index: 10;
+}
+.right:active{
+	background: #ccc;
+}
+.left:active{
+	background: #ccc;
+}
+.cricle{
+  	width:30px;
+  	height:30px;
+  	border-radius: 50%;
+    background: #ccc;
+  	position: absolute;
+  	left:600px;
+  	top:300px;
+  	z-index: 0;
+  	opacity: 1;
+  }
+  .bigs{
+  	position: absolute;
+  	z-index: 5;
+  }
+</style>
+<body>
+<div class="imgs">
+	<ul class="boxs">
+		<li><img src="image/6.jpeg"  alt=""></li>
+		<li><img src="image/17.jpg"  alt=""></li>
+		<li><img src="image/1.JPG" alt=""></li>
+		<li><img src="image/8.jpeg" alt=""></li>
+		<li><img src="image/7.jpeg" alt=""></li>
+		<li><img src="image/13.JPG" alt=""></li>
+		<li><img src="image/14.JPG" alt=""></li>
+		<li><img src="image/12.JPG" alt=""></li>
+		<li><img src="image/2.jpg" alt=""></li>
+	</ul>
+	<div class="big">
+		<img src="" alt="" class="bigs" >
+		<div class="down">
+			<div class="down1">关闭</div>
+		</div>
+		<ul class="btn">
+			<li class="left">&lt;</li>
+			<li class="right">&gt;</li>
+		</ul>
+		<div class="cricle"></div>
+	</div>
+	
+	
+	</div>
+
+</body>
+<script>
+	var img=$('.imgs .boxs li');  //获取imgs下的所有img
+	var bigs=$('.bigs');//获取bigs
+     // img.on('click',function(){
+     // 	$('.big').show();
+     // 	ind=$(this).index()
+     //    bigs.attr("src",$(this).attr('src'))
+     //    console.log(ind)
+     // })
+
+    
+    var ind=0
+    var right=$('.right')
+    var left=$('.left')
+    img.on('click',function(){  //每一个图片加一个点击事件
+    	$('.big').show(); //让原来隐藏的big显示
+        ind=$(this).index();//将每点击一次图片的次数下标保存
+    	var t=$(this).find('img').attr('src') //获取点击的图片的src的值
+    	$('.bigs').attr('src',t);//把bigs里的src的值 替换成点击图片时，图片的src值
+    	function makecricle(i){
+    	var l=Math.floor(Math.random()*$(window).width())-25;
+    	var t=Math.floor(Math.random()*$(window).height())-25;
+    	var wh=Math.floor(Math.random()*20+5);
+    	var r=Math.floor(Math.random()*255);
+    	var g=Math.floor(Math.random()*255);
+    	var b=Math.floor(Math.random()*255);
+    	var c='rgb('+r+','+g+','+b+')';
+    	$('<div>').addClass('cricle')
+				  .width(wh)
+				  .height(wh)
+				  .css({"background":c,"top":300,"left":600})
+				  .appendTo('.big')
+				  .delay(i*12)
+				  .animate({top:t,left:l},1000)
+		}
+		for(var i=0;i<200;i++){
+			makecricle(i)
+		}
+    })
+    
+
+    $('.down').on('click',function(){ //点击关闭按钮的时候，让big隐藏
+    	$('.big').hide();
+    	$('.cricle').detach()
+    })
+
+    // $('.down').empty().on('click',function(){ //点击关闭按钮的时候，让big隐藏
+    // 	$('.big').hide()
+    // })
+    right.on('click',function(){  //点击有按钮的时候  让图片跟着下标走
+        ind++
+        if(ind==8){ind=0};
+        var t=$('.boxs li img').eq(ind).attr('src')
+        $('.bigs').attr('src',t);
+    })
+    left.on('click',function(){ 
+    	ind--
+    	if(ind<0){ind=img.length-1};
+    	var t=$('.boxs li img').eq(ind).attr('src')
+        $('.bigs').attr('src',t);
+    }) 
+
+    	$('.bigs').on('click',function(e){
+          var x=e.pageX
+          var y=e.pageY
+          var imgw=$(window).outerWidth()
+          var imgm=imgw/2 // var middle=imgw/2
+    	  var imgl=$(this).offset().left
+          if((x>imgl)&&(x<imgm)){
+     //         ind--
+    	// if(ind<0){ind=img.length-1};
+    	// var t=$('.boxs li img').eq(ind).attr('src')
+     //    $('.bigs').attr('src',t);
+     $('.left').trigger('click')
+          }else{
+        //   	ind++
+        // if(ind==8){ind=0};
+        // var t=$('.boxs li img').eq(ind).attr('src')
+        // $('.bigs').attr('src',t);
+        $('.right').trigger('click')
+          }
+          // }else{
+          // 	ind++
+          //  if(ind==8){ind=0};
+          // var t=$('.boxs li img').eq(ind).attr('src')
+          // $('.bigs').attr('src',t);
+          // }
+    	  })
+    $('.big').on('click',function(e){
+    	var e=e.target;
+    	 if(e.className=="big"){
+    	 	$('.down').trigger('click')
+    	 }
+    	 if(e.className=="left"||e.className=="right"){
+    	 	return
+    	 }
+    	$('.cricle').detach()
+    })
+  　
+  //   $('body').on('mouseenter','.big',function(){
+  //   	// alert(1)
+  //   	// setInterval(function(){
+  //   	function makecricle(i){
+  //   	var l=Math.floor(Math.random()*$(window).width());
+  //   	var t=Math.floor(Math.random()*$(window).height());
+  //   	var wh=Math.floor(Math.random()*25+5);
+  //   	var r=Math.floor(Math.random()*255);
+  //   	var g=Math.floor(Math.random()*255);
+  //   	var b=Math.floor(Math.random()*255);
+  //   	var c='rgb('+r+','+g+','+b+')';
+  //   	$('<div>').addClass('cricle')
+		// 		  .width(wh)
+		// 		  .height(wh)
+		// 		  .css({"background":c,"top":300,"left":600})
+		// 		  .appendTo('.big')
+		// 		  .delay(i*15)
+		// 		  .animate({top:t,left:l},1000)
+		// }
+		// for(var i=0;i<100;i++){
+		// 	makecricle(i)
+		// }
+  //   // },1000)
+  //   })
+    
+  $('*').on('mousedown',false)
+	 </script>
+</html>
